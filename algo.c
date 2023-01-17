@@ -3,18 +3,18 @@
 void build_graph_cmd(pnode *head){
     deleteGraph_cmd(head);
     printf("build praph\n");
-    int vertexnum = 0;
-    scanf(" %d",&vertexnum);
+    int vertex_num = 0;
+    scanf(" %d",&vertex_num);
     int vertex=-1;
-    printf("Vertexnum=%d \n",vertexnum);
+    printf("Vertexnum=%d \n",vertex_num);
     char input;
     while (scanf(" n %d",&vertex))
     {
         printf("build %d edges\n",vertex);
-        int weight = -1, tovertex = -1;
-        while (scanf(" %d",&tovertex)&&scanf(" %d",&weight))
+        int weight = -1, to_vertex = -1;
+        while (scanf(" %d",&to_vertex)&&scanf(" %d",&weight))
         {
-            printf(" add to %d an edge to %d with %d weight\n",vertex,tovertex,weight);
+            printf(" add to %d an edge to %d with %d weight\n",vertex,to_vertex,weight);
         }
 
     }
@@ -28,10 +28,10 @@ void insert_node_cmd(pnode *head){
     scanf(" %d",&vertex);
 
         printf("build %d edges\n",vertex);
-        int weight = -1, tovertex = -1;
-        while (scanf(" %d",&tovertex)&&scanf("%d",&weight))
+        int weight = -1, to_vertex = -1;
+        while (scanf(" %d",&to_vertex)&&scanf("%d",&weight))
         {
-            printf(" add to %d an edge to %d with %d weight\n",vertex,tovertex,weight);
+            printf(" add to %d an edge to %d with %d weight\n",vertex,to_vertex,weight);
         }
 
 }
@@ -43,9 +43,9 @@ void delete_node_cmd(pnode *head){
 void printGraph_cmd(pnode head){printf("print graph \n");} //for self debug
 void deleteGraph_cmd(pnode* head){printf("delete graph \n");}
 void shortsPath_cmd(pnode head){
-    int fromvertex,tovertex;
-    scanf("%d %d",&fromvertex,&tovertex);
-    printf("dijkstra and find shortest path between two nodes \n");
+    int from_vertex,to_vertex;
+    scanf("%d %d",&from_vertex,&to_vertex);
+    printf("dijkstra and find shortest path between %d to %d \n",from_vertex,to_vertex);
 
 }
 void TSP_cmd(pnode head){

@@ -4,28 +4,28 @@ int main(){
     int i=0;
     char cmd;
     pnode head;
-    while (scanf(" %c",&cmd) && i<5)
+    while (scanf(" %c",&cmd)==1 )
     {
-        i++;
+
         switch( cmd)
-{
-	case 'A':
+    {
+	    case 'A':
 			build_graph_cmd(&head);
 			break;
 
-	case 'B':
+	    case 'B':
 			insert_node_cmd(&head);
 			break;
-	case 'D':
+	    case 'D':
 			delete_node_cmd;
 			break;
-    case 'S':
+        case 'S':
             shortsPath_cmd(head);
             break;
-    case 'T':
+        case 'T':
             TSP_cmd(head);
             break;
-	default:
+	    default:
 			printf("%c command not found\n",cmd);
 			break;
 }
