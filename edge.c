@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "graph.h"
 #include "edges.h"
 void delete_edges_to(pedge *head,int vertex_name){}
