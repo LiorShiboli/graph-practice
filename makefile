@@ -5,7 +5,7 @@ all:graph
 
 graph:main.o algo.o edge.o node.o
 	$(CC) $(FLAGS)  -o graph main.o algo.o edge.o node.o
-algo: algo.c graph.h
+algo: algo.c graph.h algo.h
 	$(CC) $(FLAGS) -valgrind  --leak-check=yes -c algo.c
 main: main.c graph.h
 	$(CC) $(FLAGS) -valgrind  --leak-check=yes -c main.c

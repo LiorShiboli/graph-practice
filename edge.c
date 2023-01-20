@@ -3,7 +3,6 @@
 #include "graph.h"
 #include "edge.h"
 void delete_edges_to(pedge *head,int vertex_name){
-    printf("start");
     pedge current = *head;
     pedge temp;
     while (current && current->endpoint->node_num == vertex_name)
@@ -37,7 +36,6 @@ void delete_edges_to(pedge *head,int vertex_name){
         current=current->next;
 
     }
-    printf("end\n");
 }
 void add_edge(pedge *head,pedge edge){
     edge->next = *head;

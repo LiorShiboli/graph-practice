@@ -3,6 +3,7 @@
 #include "graph.h"
 #include "node.h"
 #include "edge.h"
+#include "algo.h"
 void build_graph_cmd(pnode *head){
     deleteGraph_cmd(head);
     printf("build praph\n");
@@ -138,4 +139,7 @@ void TSP_cmd(pnode head){
 
     printf("get k points,find all the shortest paths between them,and ran tsp between them \n");
 
+}
+int dijkstra(pnode head, int from_vertex,int to_vertex){
+    
 }

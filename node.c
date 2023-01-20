@@ -9,16 +9,21 @@ void delete_node(pnode *head,int name){
     pnode temp = NULL;
     while (current)
     {
-        print_node(current);
         delete_edges_to( &(current->edges),name);
 
         current = current->next;
     }
 
     current = *head;
+    if (current->node_num==name)
+    {
+        *head= current->next;
+        free(current);
+        return;
+    }
+
     while (current->next)
     {
-        print_node(current);
         if(current->next->node_num==name){
             temp = current->next;
             current->next = current->next->next;
