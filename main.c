@@ -3,7 +3,7 @@
 int main(){
     int i=0;
     char cmd;
-    pnode head;
+    pnode head=NULL;
     while (scanf(" %c",&cmd)==1 )
     {
 
@@ -11,18 +11,23 @@ int main(){
     {
 	    case 'A':
 			build_graph_cmd(&head);
+      printGraph_cmd(head);
 			break;
 
 	    case 'B':
 			insert_node_cmd(&head);
+      printGraph_cmd(head);
 			break;
+      
 	    case 'D':
-			delete_node_cmd;
+			delete_node_cmd(&head);
+      printGraph_cmd(head);
 			break;
-        case 'S':
+
+      case 'S':
             shortsPath_cmd(head);
             break;
-        case 'T':
+      case 'T':
             TSP_cmd(head);
             break;
 	    default:
@@ -30,6 +35,7 @@ int main(){
 			break;
 }
     }
-
+  deleteGraph_cmd(&head);
+  printGraph_cmd(head);
     return 0;
 }
