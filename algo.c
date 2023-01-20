@@ -122,20 +122,30 @@ void TSP_cmd(pnode head){
     int vertexnum;
     scanf(" %d", &vertexnum);
     int vertex=-1;
-    for (int i = 0; i < vertexnum; i++)
-    {
+    scanf(" %d",&vertex);
+    pnode *arr= (pnode*)malloc(sizeof(pnode*));
+    int len=1;
+    arr[0]=find_node(&head,vertex);
 
+    for (int i = 0; i < vertexnum-1; i++)
+    {
         scanf(" %d",&vertex);
-        printf("add %d to the %d points\n",vertex,vertexnum);
+
+        arr = realloc(arr,sizeof(pnode*)*(len+1));
+        arr[len]=find_node(&head, vertex);
+        len++;
     }
 
-    printf("get k points,find all the shortest paths between them,and ran tsp between them \n");
-
+    int tspath= TSP(head,len,arr,0,len-1);
+    printf("TSP shortest path: %d\n\r",tspath);
+    free(arr);
 }
 int dijkstra(pnode head, int from_vertex,int to_vertex){
+
     pnode current = head;
     while (current)
     {
+
         current->path_num=-1;
         current->visited=0;
         if (current->node_num==from_vertex)
@@ -148,7 +158,8 @@ int dijkstra(pnode head, int from_vertex,int to_vertex){
     pnode min = head;
 
     while (min)
-    { min=NULL;
+    {
+        min=NULL;
     pnode current=head;
     while (current)
     {
@@ -174,6 +185,7 @@ int dijkstra(pnode head, int from_vertex,int to_vertex){
         while (p)
         {
             p->visited=0;
+            p=p->next;
         }
 
         return min->path_num;
@@ -199,10 +211,46 @@ int dijkstra(pnode head, int from_vertex,int to_vertex){
 
 
 }
-int TSP(pnode head,int k, pnode array[]){
-    for (int i = 0; i < k+1; i++)
+int TSP(pnode head,int len, pnode arr[],int l,int r){
+    int i;
+    int path;
+    if (l == r)
     {
+        path=0;
+        for (int j = 0; j < len-1; j++)
+        {
+            int min_path =dijkstra(head,arr[j]->node_num,arr[j+1]->node_num);
+            if (min_path==-1)
+            {
+                return -1;
+            }
+            path+=min_path;
+
+        }
 
     }
+    else {
+        path=-1;
+        for (i = l; i <= r; i++) {
+            pnode temp = *(arr+l);
+            *(arr+l)=*(arr+i);
+            *(arr+i)= temp;
+            int min_path = TSP(head,len,arr, l + 1, r);
+            if (min_path!=-1)
+            {
+                if ((min_path<path)||(path==-1))
+                {
+                    path=min_path;
+                }
 
+            }
+
+            temp = *(arr+l);
+            *(arr+l)=*(arr+i);
+            *(arr+i)= temp;
+        }
+    }
+    return path;
 }
+
+
