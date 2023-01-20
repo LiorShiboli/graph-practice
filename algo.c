@@ -6,7 +6,6 @@
 #include "algo.h"
 void build_graph_cmd(pnode *head){
     deleteGraph_cmd(head);
-    printf("build praph\n");
     int vertex_num = 0;
     scanf(" %d",&vertex_num);
     if (vertex_num==0)
@@ -28,7 +27,6 @@ void build_graph_cmd(pnode *head){
 
     }
 
-    printf("Vertexnum=%d \n",vertex_num);
     int vertex_name;
     while (scanf(" n %d",&vertex_name))
     {
@@ -37,7 +35,6 @@ void build_graph_cmd(pnode *head){
 
         int weight = -1, to_vertex = -1;
         pedge new_edge=NULL;
-        printf("build %d edges\n",vertex->node_num);
         while (scanf(" %d",&to_vertex)&&scanf(" %d",&weight))
         {
 
@@ -60,11 +57,9 @@ void build_graph_cmd(pnode *head){
 
 }
 void insert_node_cmd(pnode *head){
-    printf("get and insert node\n");
     int vertex_name = -1;
     scanf(" %d",&vertex_name);
 
-    printf("build %d edges\n",vertex_name);
     pnode vertex = find_node(head,vertex_name);
     if (!vertex)
     {
@@ -96,12 +91,10 @@ void insert_node_cmd(pnode *head){
 void delete_node_cmd(pnode *head){
     int vertex = -1;
     scanf(" %d",&vertex);
-    printf("delete \n");
     delete_node(head,vertex);
 
 }
 void printGraph_cmd(pnode head){
-    printf("print graph \n");
     pnode current= head;
     while (current)
     {
@@ -116,14 +109,13 @@ void deleteGraph_cmd(pnode* head){
 
     if (*head)
     {
-    printf("delete graph \n");
     delete_all_nodes(head);
     }
 }
 void shortsPath_cmd(pnode head){
     int from_vertex,to_vertex;
     scanf("%d %d",&from_vertex,&to_vertex);
-    printf("dijkstra and find shortest path between %d to %d \n",from_vertex,to_vertex);
+    printf("Dijsktra shortest path: %d \n\r",dijkstra(head,from_vertex,to_vertex));
 
 }
 void TSP_cmd(pnode head){
@@ -141,5 +133,76 @@ void TSP_cmd(pnode head){
 
 }
 int dijkstra(pnode head, int from_vertex,int to_vertex){
-    
+    pnode current = head;
+    while (current)
+    {
+        current->path_num=-1;
+        current->visited=0;
+        if (current->node_num==from_vertex)
+        {
+            current->path_num =0;
+        }
+
+        current= current->next;
+    }
+    pnode min = head;
+
+    while (min)
+    { min=NULL;
+    pnode current=head;
+    while (current)
+    {
+
+     if (!(current->visited)&&current->path_num!=-1)
+     {
+        if (min==NULL || current->path_num<min->path_num)
+        {
+            min=current;
+        }
+
+     }
+     current= current->next;
+    }
+    if (min==NULL)
+    {
+        return -1;
+    }
+
+    if (min->node_num==to_vertex)
+    {
+        pnode p =head;
+        while (p)
+        {
+            p->visited=0;
+        }
+
+        return min->path_num;
+    }
+    pedge edge =min->edges;
+    while (edge)
+    {
+
+        if ((edge->endpoint->path_num==-1)||( edge->endpoint->path_num>(min->path_num+edge->weight)))
+        {
+            edge->endpoint->path_num=min->path_num+edge->weight;
+        }
+    edge=edge->next;
+    }
+    min->visited=1;
+
+
+
+
+
+    }
+    return -1;
+
+
+}
+int TSP(pnode head,int k, pnode array[]){
+    for (int i = 0; i < k+1; i++)
+    {
+
+    }
+
 }

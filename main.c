@@ -11,17 +11,14 @@ int main(){
     {
 	    case 'A':
 			build_graph_cmd(&head);
-      printGraph_cmd(head);
 			break;
 
 	    case 'B':
 			insert_node_cmd(&head);
-      printGraph_cmd(head);
 			break;
-      
+
 	    case 'D':
 			delete_node_cmd(&head);
-      printGraph_cmd(head);
 			break;
 
       case 'S':
@@ -36,6 +33,5 @@ int main(){
 }
     }
   deleteGraph_cmd(&head);
-  printGraph_cmd(head);
     return 0;
 }
